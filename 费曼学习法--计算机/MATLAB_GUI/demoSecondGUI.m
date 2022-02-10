@@ -1,0 +1,191 @@
+function varargout = demoSecondGUI(varargin)
+% DEMOSECONDGUI MATLAB code for demoSecondGUI.fig
+%      DEMOSECONDGUI, by itself, creates a new DEMOSECONDGUI or raises the existing
+%      singleton*.
+%
+%      H = DEMOSECONDGUI returns the handle to a new DEMOSECONDGUI or the handle to
+%      the existing singleton*.
+%
+%      DEMOSECONDGUI('CALLBACK',hObject,eventData,handles,...) calls the local
+%      function named CALLBACK in DEMOSECONDGUI.M with the given input arguments.
+%
+%      DEMOSECONDGUI('Property','Value',...) creates a new DEMOSECONDGUI or raises the
+%      existing singleton*.  Starting from the left, property value pairs are
+%      applied to the GUI before demoSecondGUI_OpeningFcn gets called.  An
+%      unrecognized property name or invalid value makes property application
+%      stop.  All inputs are passed to demoSecondGUI_OpeningFcn via varargin.
+%
+%      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
+%      instance to run (singleton)".
+%
+% See also: GUIDE, GUIDATA, GUIHANDLES
+
+% Edit the above text to modify the response to help demoSecondGUI
+
+% Last Modified by GUIDE v2.5 10-Feb-2022 13:37:49
+
+% Begin initialization code - DO NOT EDIT
+gui_Singleton = 1;
+gui_State = struct('gui_Name',       mfilename, ...
+                   'gui_Singleton',  gui_Singleton, ...
+                   'gui_OpeningFcn', @demoSecondGUI_OpeningFcn, ...
+                   'gui_OutputFcn',  @demoSecondGUI_OutputFcn, ...
+                   'gui_LayoutFcn',  [] , ...
+                   'gui_Callback',   []);
+if nargin && ischar(varargin{1})
+    gui_State.gui_Callback = str2func(varargin{1});
+end
+
+if nargout
+    [varargout{1:nargout}] = gui_mainfcn(gui_State, varargin{:});
+else
+    gui_mainfcn(gui_State, varargin{:});
+end
+% End initialization code - DO NOT EDIT
+
+
+% --- Executes just before demoSecondGUI is made visible.
+function demoSecondGUI_OpeningFcn(hObject, eventdata, handles, varargin)
+% This function has no output args, see OutputFcn.
+% hObject    handle to figure
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+% varargin   command line arguments to demoSecondGUI (see VARARGIN)
+
+% Choose default command line output for demoSecondGUI
+handles.output = hObject;
+
+% Update handles structure
+guidata(hObject, handles);
+
+% UIWAIT makes demoSecondGUI wait for user response (see UIRESUME)
+% uiwait(handles.figure1);
+
+
+% --- Outputs from this function are returned to the command line.
+function varargout = demoSecondGUI_OutputFcn(hObject, eventdata, handles) 
+% varargout  cell array for returning output args (see VARARGOUT);
+% hObject    handle to figure
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Get default command line output from handles structure
+varargout{1} = handles.output;
+
+
+
+function editFirst_Callback(hObject, eventdata, handles)
+% hObject    handle to editFirst (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of editFirst as text
+%        str2double(get(hObject,'String')) returns contents of editFirst as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function editFirst_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to editFirst (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function editSecond_Callback(hObject, eventdata, handles)
+% hObject    handle to editSecond (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of editSecond as text
+%        str2double(get(hObject,'String')) returns contents of editSecond as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function editSecond_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to editSecond (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in OKButton.
+function OKButton_Callback(hObject, eventdata, handles)
+% hObject    handle to OKButton (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% 1) 获取输入数据1和2中的数据，并判断数据是否合法
+
+data1 = get(handles.editFirst, 'string') %editFirst为第一个可编辑文本的tag
+data2 = get(handles.editSecond, 'string') %editSecond为第二个可编辑文本的tag
+
+floatData1 = str2num(data1);
+floatData2 = str2num(data2);
+
+%row,col 对应floatData行数、列数
+[row1, col1 ]= size(floatData1);
+[row2, col2 ]= size(floatData2);
+
+% 当输入的是类似“12 23”这种以空格分割的字符时，str2num会得到数字数组，长度不为1
+% 当输入包含非数字的字符时，str2num得到的结果是[]，空矩阵，isempty判断结果为真
+if (col1~=1 || col2 ~=1 || isempty(floatData1)...
+    || isempty(floatData2))
+    
+    f1 = msgbox('输入数据非法！请输入数字！','error' ,'error');
+else
+    f2 = msgbox('输入成功！');
+    
+    % 2) 然后将其相乘保存在变量中
+    result = floatData1*floatData2
+    
+    % 由于后面用readtable函数读取数据会自动将第一行数据作为列名称省略，故增广数据为2行1列
+    result = [result;result];
+    
+    % 3) 将相乘结果保存在excel中
+    xlswrite('result.xls', result);
+    
+    % 4) 让demoFirstGUi中的mainTable显示结果
+    
+    % findobj函数去寻找demoFirstGUI中tag名为mainTable的句柄，这是为了后面操作
+    h = findobj(demoFirstGUI, 'tag', 'mainTable');
+    
+    % readtable 函数从excel中读取数据
+    resultFromExcel = readtable('result.xls');
+    
+    % table2cell函数将table类型数据转换为cell类型，uitable数据不能用table类型赋值    
+    cellData = table2cell(resultFromExcel);
+        
+    %set函数将uitable数据赋值
+    set(h, 'data', cellData);
+end
+
+
+
+% --- Executes on button press in shutDownButton.
+function shutDownButton_Callback(hObject, eventdata, handles)
+% hObject    handle to shutDownButton (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% 用copyfile将result.xls移动到D盘根目录
+status = copyfile('result.xls', 'D:\');
+
+if status == 1
+    f1 = msgbox('复制成功！');
+    
+    % 关闭当前GUI
+    close(demoSecondGUI);
+else
+    f2 = msgbox('复制失败！','error', 'error');
+end
