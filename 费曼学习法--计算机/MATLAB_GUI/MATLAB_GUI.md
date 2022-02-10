@@ -175,4 +175,8 @@ MALTBA命令行输入“deploytool”，然后点击"Application Compiler"
 ## 4. GitHub资源
 本文章.md文件及GUI源代码见个人GitHub仓库：
 
+URL: https://github.com/Little-Chen-T/Zhihu
+
+HTTPS: https://github.com/Little-Chen-T/Zhihu.git
+
 
