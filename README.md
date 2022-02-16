@@ -13,3 +13,8 @@ The repository about my Zhihu articles.
 
 ### 1.1.2 C++_split_num2str_str2num
 在C98及其以下版本的C/C++中，没有现成的字符串split函数和num2str及str2num函数，对于竞赛不能使用C11的我来说非常头疼，通过学习stringstream和strtok实现了自己的split函数，通过stringstream和sscanf以及sprint实现了num2str及str2num函数。
+
+# 2. 蓝桥杯冲刺训练营
+备赛蓝桥杯
+## 2.1 递归
+递归例题
