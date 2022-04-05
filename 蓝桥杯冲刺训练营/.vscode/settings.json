@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "*.m": "matlab",
+        "xtree": "cpp",
+        "ostream": "cpp",
+        "cstdlib": "cpp",
+        "map": "cpp",
+        "utility": "cpp",
+        "vector": "cpp",
+        "set": "cpp",
+        "iostream": "cpp",
+        "xstring": "cpp"
+    }
+}
